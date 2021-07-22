@@ -62,7 +62,7 @@
 
             <el-form-item label="上级权限" prop="parentId">
               <el-cascader
-                v-model="pmnForm.id"
+                v-model="pmnForm.parentId"
                 :disabled="isEdit"
                 :show-all-levels="false"
                 :options="menuTreeData"
@@ -203,6 +203,8 @@ export default {
       })
     },
     handleChange(data) {
+      // console.log(data)
+      // console.log(this.pmnForm)
       // 如果是 root 表示，顶级菜单
       if (data === '0') {
         this.pmnForm.parentId = 0
@@ -211,6 +213,8 @@ export default {
       }
     },
     handleNodeClick(node) {
+      // console.log(node)
+      // console.log(this.pmnForm)
       this.pmnForm = node.source
       this.isEdit = true
     },

@@ -43,19 +43,19 @@ export const constantRoutes = [
     ],
   },
 
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/thousmile',
-        meta: {
-          title: 'Github',
-          icon: 'link',
-        },
-      },
-    ],
-  },
+  // {
+  //   path: 'external-link',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'https://github.com/thousmile',
+  //       meta: {
+  //         title: 'Github',
+  //         icon: 'link',
+  //       },
+  //     },
+  //   ],
+  // },
 
   {
     path: '/login',
@@ -159,6 +159,69 @@ export const asyncRouterMap = [
           title: '部门管理',
         },
       },
+    ],
+  },
+
+
+  {
+    path: '/datacompare',
+    name: 'datacompare',
+    component: Layout,
+    redirect: '/datacompare/index',
+    meta: {
+      resources: 'datacompare',
+      title: '数据比对',
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import ('@/views/datacompare/all/index'),
+        name: 'all',
+        meta: {
+          resources: 'datacompare_all',
+          title: '全',
+        },
+      },
+      {
+        path: 'news',
+        component: () => import ('@/views/datacompare/news/index'),
+        name: 'news',
+        meta: {
+          resources: 'datacompare_news',
+          title: '新闻',
+        },
+      }
+    ],
+  },
+
+  {
+    path: '/flow',
+    name: 'Flow',
+    component: Layout,
+    redirect: '/flow/index',
+    meta: {
+      resources: 'flow',
+      title: '流程',
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import ('@/views/flow/show/index'),
+        name: 'flow_show',
+        meta: {
+          resources: 'flow_show',
+          title: '展示',
+        },
+      },
+      {
+        path: 'new',
+        component: () => import ('@/views/flow/show/index'),
+        name: 'flow_new',
+        meta: {
+          resources: 'flow_new',
+          title: '新建',
+        },
+      }
     ],
   },
 

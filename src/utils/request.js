@@ -1,9 +1,9 @@
 import axios from 'axios'
 import Qs from 'qs'
-import {MessageBox, Message} from 'element-ui'
+import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import router from '@/router'
-import {getToken} from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 const service = axios.create({
   /**
@@ -13,6 +13,18 @@ const service = axios.create({
    *
    */
   baseURL: process.env.NODE_ENV === 'development' ? '/api' : process.env.VUE_APP_BASE_API,
+  // withCredentials: true, // send cookies when cross-domain requests
+  timeout: 50000 // request timeout
+})
+
+const service2 = axios.create({
+  /**
+   * 如果要打包发布，切记，要修改
+   * baseURL: '/api' 只适合开发的时候，解决前后端跨域的问题，
+   * baseURL:process.env.VUE_APP_BASE_API 线上环境，不存在跨域的问题，所以不需要代理
+   *
+   */
+  baseURL: process.env.NODE_ENV === 'development' ? '/ap2' : process.env.VUE_APP_BASE_API2,
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 50000 // request timeout
 })
@@ -66,7 +78,7 @@ service.interceptors.response.use(
 )
 
 function errorMessage(msg) {
-  Message({message: msg, type: 'error', duration: 5000})
+  Message({ message: msg, type: 'error', duration: 5000 })
 }
 
 function logout(msg) {
@@ -84,8 +96,9 @@ function logout(msg) {
       window.location.reload()
     })
     // 跳转到 首页
-    router.push({name: 'Dashboard'})
+    router.push({ name: 'Dashboard' })
   })
 }
 
 export default service
+export { service2 }

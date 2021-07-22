@@ -172,7 +172,7 @@ export default {
       _this.loading = true
       getRolePage(_this.page).then(result => {
       // getRoleAll().then(result => {
-        console.log(result)
+      //   console.log(result)
         _this.tableData = result.list
         _this.page.total = result.total
         _this.loading = false
